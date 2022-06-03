@@ -40,7 +40,7 @@ handleKeyPress = (event) => {
   }
 }
   render(){
-   var a=this.state.todo
+   var items=this.state.todo
   
   
 
@@ -55,12 +55,12 @@ handleKeyPress = (event) => {
         <button className="buttonsty" onClick={()=>{this.addtodo()}}>+</button></spam>
         
       
-        {a.map((item) => {
+        {items.map((item) => {
           return <span className="todoitem"><li className="itemsstyle" >{item}<button  className="sty" value={item} onClick={(Event)=>{this.dele(Event.target.value)}}><FaTrashAlt /></button></li></span>;
           
        })}
         
-       <span className="footer"><span>You have {a.length} pending task</span><button  className="buttonstyy" onClick={()=>{this.cle()}}>Clear All</button></span> 
+       <span className="footer"><span>You have {items.length} pending task</span><button  className="buttonstyy" onClick={()=>{this.cle()}}>Clear All</button></span> 
       </div>
       </header>
     </div>
