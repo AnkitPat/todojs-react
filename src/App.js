@@ -20,10 +20,10 @@ class App extends React.Component{
   }
 
   dele(value){
-    console.log(value)
+    //console.log(value)
     var a=this.state.todo
-    var index = a.indexOf(value);
-    a.splice(index, 1);
+   // var index = a.indexOf(value);
+    a.splice(value, 1);
     this.setState({todo:a})
   }
  
@@ -55,8 +55,8 @@ handleKeyPress = (event) => {
         <button className="buttonsty" onClick={()=>{this.addtodo()}}>+</button></spam>
         
       
-        {items.map((item) => {
-          return <span className="todoitem"><li className="itemsstyle" >{item}<button  className="sty" value={item} onClick={(Event)=>{this.dele(Event.target.value)}}><FaTrashAlt /></button></li></span>;
+        {items.map((item,index) => {
+          return <span className="todoitem"><li className="itemsstyle" >{item}<button  className="sty" onClick={(event)=>{this.dele(index)}}><FaTrashAlt /></button></li></span>;
           
        })}
         
