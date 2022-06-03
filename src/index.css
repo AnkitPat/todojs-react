@@ -26,12 +26,13 @@ code {
   margin-top:80px;
   margin-left: 35%;
   padding: 10px;
-  width: 250px;
+  width: 300px;
   border-radius: 5px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   background-color :white;
   color: black;
+ 
 }
 
 .header{
@@ -51,12 +52,39 @@ li {
 .buttonsty{
   background-color: blue;
   color: white;
+  border: 0px;
 }
 
-.sty{
-  background-color: red;
+.itemsstyle{
+  font-size: 14px;
+}
+
+.totoitem{
+  background-color: #DCDCDC;
+  padding: 5px;
+}
+
+.itemsstyle{
+  font-size: 15px;
+  padding: 5px;
+}
+.input_list{
+  border: 1px solid lightgray;
 }
 
 .footer{
   margin-top: 10px;
+}
+
+.todoblock{
+  width: 220px;
+  text-align: left;
+}
+
+.sty{
+  background-color:#DC143C;
+  float: right;
+  color:white;
+  font-size: 18px;
+  border: 0px;
 }

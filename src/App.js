@@ -1,51 +1,67 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { FaTrashAlt } from "react-icons/fa";
 
 class App extends React.Component{
   state={
     text:"",
-    list:[]
+    todo:[]
   
   }
-  add(){
-   var a=this.state.list
-  var b=this.state.text
-  if (b.length>0)
-    a.push(b)
-    this.setState({list:a})
+  addtodo(){
+    var list=this.state.todo
+    var text=this.state.text
+    if (text.length>0){
+      list.push(text)
+      this.setState({todo:list})
+    }
+  this.state.text=""
   }
 
   dele(value){
-    var a=this.state.list
+    console.log(value)
+    var a=this.state.todo
     var index = a.indexOf(value);
     a.splice(index, 1);
-    this.setState({list:a})
+    this.setState({todo:a})
   }
  
 
 cle(){
-  var a=this.state.list
+  var a=this.state.todo
   a=[]
-  this.setState({list:a})
+  this.setState({todo:a})
+}
+
+handleKeyPress = (event) => {
+  if(event.key === 'Enter'){
+    this.addtodo();
+  }
 }
   render(){
-   var a=this.state.list
+   var a=this.state.todo
+  
+  
+
   return (
 
     <div className="App">
       <header className="App-header">
+        <div className="todoblock"> 
         <label className="header">Todo App</label>
-        <spam className="todoitems"><input className="input_list" placeholder="Add your Todo" onChange={(Event)=>{this.setState({text: Event.target.value})}}></input>
-        <button className="buttonsty" onClick={()=>{this.add()}}>+</button></spam>
+
+        <spam className="todoitems"><input className="input_list" placeholder="Add your Todo" value={this.state.text} onKeyPress={this.handleKeyPress} onChange={(Event)=>{this.setState({text: Event.target.value})}}></input>
+        <button className="buttonsty" onClick={()=>{this.addtodo()}}>+</button></spam>
         
       
-        {a.map(item => {
-          return <spam><li className="itemsstyle" >{item}<button  className="sty" value={item} onClick={(Event)=>{this.dele(Event.target.value)}}><i class="fa-solid fa-trash"></i></button></li></spam>;
-        })}
+        {a.map((item) => {
+          return <span className="todoitem"><li className="itemsstyle" >{item}<button  className="sty" value={item} onClick={(Event)=>{this.dele(Event.target.value)}}><FaTrashAlt /></button></li></span>;
+          
+       })}
         
-       <spam className="footer"><spam>You have {a.length} pending task</spam><button  className="buttonsty" onClick={()=>{this.cle()}}>Clear All</button></spam> 
+       <span className="footer"><span>You have {a.length} pending task</span><button  className="buttonstyy" onClick={()=>{this.cle()}}>Clear All</button></span> 
+      </div>
       </header>
     </div>
   );
