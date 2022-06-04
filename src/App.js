@@ -19,16 +19,16 @@ class App extends React.Component{
   this.state.text=""
   }
 
-  dele(value){
+  deleteitem(value){
     //console.log(value)
-    var a=this.state.todo
+    var list=this.state.todo
    // var index = a.indexOf(value);
-    a.splice(value, 1);
-    this.setState({todo:a})
+    list.splice(value, 1);
+    this.setState({todo:list})
   }
  
 
-cle(){
+cleartodo(){
   var a=this.state.todo
   a=[]
   this.setState({todo:a})
@@ -51,16 +51,16 @@ handleKeyPress = (event) => {
         <div className="todoblock"> 
         <label className="header">Todo App</label>
 
-        <spam className="todoitems"><input className="input_list" placeholder="Add your Todo" value={this.state.text} onKeyPress={this.handleKeyPress} onChange={(Event)=>{this.setState({text: Event.target.value})}}></input>
-        <button className="buttonsty" onClick={()=>{this.addtodo()}}>+</button></spam>
+        <div className="todoitems"><input className="input_list" placeholder="Add your Todo" value={this.state.text} onKeyPress={this.handleKeyPress} onChange={(Event)=>{this.setState({text: Event.target.value})}}></input>
+        <button className="buttonsty" onClick={()=>{this.addtodo()}}>+</button></div>
         
       
         {items.map((item,index) => {
-          return <span className="todoitem"><li className="itemsstyle" >{item}<button  className="sty" onClick={(event)=>{this.dele(index)}}><FaTrashAlt /></button></li></span>;
+          return <span className="todoitem"><li className="itemsstyle" >{item}<button  className="sty" onClick={(event)=>{this.deleteitem(index)}}><FaTrashAlt /></button></li></span>;
           
        })}
         
-       <span className="footer"><span>You have {items.length} pending task</span><button  className="buttonstyy" onClick={()=>{this.cle()}}>Clear All</button></span> 
+       <div className="footer"><span>You have {items.length} pending task</span><button  className="buttonstyy" onClick={()=>{this.cleartodo()}}>Clear All</button></div> 
       </div>
       </header>
     </div>

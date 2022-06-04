@@ -5,8 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  background-image: linear-gradient(to bottom, #4ef8f0, #2acdd8, #1ca3ba, #217a96, #22546f);
+    background-repeat: no-repeat;
+  background-size: cover;
   
-  background-color: cadetblue;
 }
 
 code {
@@ -25,18 +28,23 @@ code {
 .App-header{
   margin-top:80px;
   margin-left: 35%;
-  padding: 10px;
-  width: 300px;
+  padding: 10px 20px;
+  width: 400px; 
   border-radius: 5px;
-  display: flex;
-  justify-content: left;
   background-color :white;
   color: black;
  
 }
+.todoblock{
+  float: left;
+  padding: 20px 0px;
+}
 
 .header{
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 35px;
+  padding-bottom: 25px;
+  float: left;
 }
 
 li {
@@ -44,47 +52,65 @@ li {
 }
 
 .itemsstyle{
-  margin-top: 5px;
-  background-color: lightgray;
-  padding: 2px;
+  margin-top: 10px;
+  background-color: #F9F5F5;
+  padding: 9px 2px 9px 15px;
+  font-size: 18px;
+  border-radius: 2px;
+  font-weight: 400;
 }
 
 .buttonsty{
-  background-color: blue;
+  background-color: #A467E1;
   color: white;
   border: 0px;
+  font-size: 28px;
+  text-align: center;
+  margin-left: 5px;
 }
 
-.itemsstyle{
-  font-size: 14px;
+
+
+.todoitems{
+  text-align: left;
+  padding-bottom: 10px;
 }
 
-.totoitem{
-  background-color: #DCDCDC;
-  padding: 5px;
-}
 
-.itemsstyle{
-  font-size: 15px;
-  padding: 5px;
-}
+
+
 .input_list{
   border: 1px solid lightgray;
+  font-size: 16px;
+  padding: 12px;
+  width: 75%;
+ 
 }
 
 .footer{
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .todoblock{
-  width: 220px;
-  text-align: left;
+  float: left;
+  padding: 20px 0px;
 }
 
 .sty{
-  background-color:#DC143C;
+  background-color:#DF4F4F;
   float: right;
   color:white;
-  font-size: 18px;
+  font-size: 14px;
+  border: 0px;
+  margin-top: -5px;
+  padding: 10px;
+}
+
+.buttonstyy{
+  float: right;
+  font-size: 16px;
+  padding: 8px;
+  background-color:#A467E1;
+  color: white;
   border: 0px;
 }
