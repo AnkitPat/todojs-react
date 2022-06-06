@@ -3,7 +3,7 @@ import './App.css';
 import React from 'react'
 import {InputTodo} from "./components/Inputtodo/Inputtodo"
 import {DisplayList} from "./components/displaytodolist/displaytodolist"
-import {Emptytodo} from "./components/emptytodo/emptytodo"
+import {EmptyTodo} from "./components/emptytodo/emptytodo"
 
 class App extends React.Component {
   state = {
@@ -11,7 +11,7 @@ class App extends React.Component {
     todo: [],
   }
 
-  addtodo(text) {
+  addTodo(text) {
     var list = this.state.todo
     if (text.length > 0) {
       list.push({ text: text, done: 0 })
@@ -21,7 +21,7 @@ class App extends React.Component {
     localStorage.setItem('Todo', list)
   }
 
-  itemdone(indexx) {
+  itemDone(indexx) {
     var todolistdone = this.state.todo
     if (todolistdone[indexx].done === 0) {
       todolistdone[indexx].done = 1
@@ -33,7 +33,7 @@ class App extends React.Component {
 
   }
 
-  deleteitem(index) {
+  deleteItem(index) {
     var list = this.state.todo
     list.splice(index, 1)
     console.log("delete call")
@@ -41,7 +41,7 @@ class App extends React.Component {
   }
 
 
-  cleartodo() {
+  clearTodo() {
     this.setState({ todo: [] })
   }
 
@@ -62,9 +62,9 @@ class App extends React.Component {
           <div className="todoblock">
             <label className="header">Todo App</label>
 
-            <InputTodo inputtext={(text)=>{this.addtodo(text)}}/>
-            <DisplayList  list={this.state.todo}  selectdone={(index)=>{this.itemdone(index)}} itemdel={(index)=>{this.deleteitem(index)}}/>
-            <Emptytodo deletetodo={()=>{this.cleartodo()}} list={this.state.todo}/>
+            <InputTodo inputtext={(text)=>{this.addTodo(text)}}/>
+            <DisplayList  list={this.state.todo}  selectdone={(index)=>{this.itemDone(index)}} itemdel={(index)=>{this.deleteItem(index)}}/>
+            <EmptyTodo deletetodo={()=>{this.clearTodo()}} list={this.state.todo}/>
           </div>
         </header>
       </div>

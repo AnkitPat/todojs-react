@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../App.css';
 
-export class Emptytodo extends React.Component{
+export class EmptyTodo extends React.Component{
  
 
     render(){
