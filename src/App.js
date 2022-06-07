@@ -18,7 +18,7 @@ class App extends React.Component {
       this.setState({ todo: list })
     }
     this.state.text = ""
-    localStorage.setItem('Todo', list)
+    localStorage.setItem('Todo', JSON.stringify(list))
   }
 
   itemDone(indexx) {
@@ -43,9 +43,14 @@ class App extends React.Component {
 
   clearTodo() {
     this.setState({ todo: [] })
+    localStorage.setItem('Todo', JSON.stringify([]))
   }
 
-
+reset(){
+  let list=JSON.parse(localStorage.getItem('Todo'))
+  
+  this.setState({todo: list})
+}
 
 
   
@@ -65,6 +70,7 @@ class App extends React.Component {
             <InputTodo inputtext={(text)=>{this.addTodo(text)}}/>
             <DisplayList  list={this.state.todo}  selectdone={(index)=>{this.itemDone(index)}} itemdel={(index)=>{this.deleteItem(index)}}/>
             <EmptyTodo deletetodo={()=>{this.clearTodo()}} list={this.state.todo}/>
+            <button onClick={()=>{this.reset()}}>Reset</button>
           </div>
         </header>
       </div>
