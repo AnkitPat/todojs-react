@@ -33,7 +33,7 @@ code {
   border-radius: 5px;
   background-color :white;
   color: black;
- 
+  
 }
 .todoblock{
   float: left;
@@ -74,7 +74,7 @@ li {
   font-size: 30px;
   position: absolute;
   margin-left: 5px;
- 
+  border-radius: 5px;
   padding-top: 5px;
 }
 
@@ -87,6 +87,7 @@ table > tr > td{
   font-size: 16px;
   padding: 12px;
   width: 55%; 
+  border-radius: 5px;
 }
 
 .categorie{
@@ -96,6 +97,7 @@ table > tr > td{
   font-size: 16px;
   padding: 2px;
   border: 1px solid lightgray;
+  border-radius: 5px;
 }
 
 .todoitems{
@@ -129,6 +131,7 @@ table > tr > td{
   background-color:#A467E1;
   color: white;
   border: 0px;
+  border-radius: 5px;
 }
 
 .vai{
@@ -148,6 +151,7 @@ table > tr > td{
   color: white;
   border: 0px;
   margin-top: 15px;
+  border-radius: 5px;
 }
 
 .table{

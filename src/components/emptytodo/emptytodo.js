@@ -11,6 +11,7 @@ export class EmptyTodo extends React.Component{
             <div className="footer">
                 <span>You have {items.length} pending task</span>
                 <button className="buttonstyy" onClick={() => { this.props.deletetodo() }}>Clear All</button>
+                <br></br>
                 <button className='resetbutton' onClick={()=>{this.props.reset()}}>Reset  <FaUndo/></button>
             </div>
             );
