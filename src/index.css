@@ -17,19 +17,19 @@ code {
     monospace;
     color: black;
 }
-.itemsstyle > .sty {
+.itemsstyle > td > .sty {
   display: none;
 }
 
-.itemsstyle:hover> .sty {
-    display: inline;
+.itemsstyle:hover> td > .sty {
+    display: block;
 }
 
 .App-header{
   margin-top:80px;
-  margin-left: 35%;
+  margin-left: 32%;
   padding: 10px 20px;
-  width: 400px; 
+  width: 600px; 
   border-radius: 5px;
   background-color :white;
   color: black;
@@ -38,6 +38,7 @@ code {
 .todoblock{
   float: left;
   padding: 20px 0px;
+  
 }
 
 .header{
@@ -51,13 +52,19 @@ li {
   list-style-type: none;
 }
 
-.itemsstyle{
+/* .itemsstyle{
   margin-top: 10px;
   background-color: #F9F5F5;
   padding: 9px 2px 9px 15px;
   font-size: 18px;
   border-radius: 2px;
   font-weight: 400;
+} */
+
+.itemsstyle{
+  font-size: 18px;
+  padding: 20px;
+  margin-top: 15px;
 }
 
 .buttonsty{
@@ -71,17 +78,29 @@ li {
   padding-top: 5px;
 }
 
+table > tr > td{
+  padding-top:20px;
+}
+
 .input_list{
  border: 1px solid lightgray;
   font-size: 16px;
   padding: 12px;
-  width: 75%; 
- 
+  width: 55%; 
+}
+
+.categorie{
+  width: 100px;
+  height: 45px;
+  margin-left: 5px;
+  font-size: 16px;
+  padding: 2px;
+  border: 1px solid lightgray;
 }
 
 .todoitems{
   text-align: left;
-  
+  width: 400px;
 }
 
 .footer{
@@ -97,10 +116,10 @@ li {
   background-color:#DF4F4F;
   float: right;
   color:white;
-  font-size: 14px;
+  font-size: 18px;
   border: 0px;
   margin-top: -7px;
-  padding: 10px;
+  padding: 5px;
 }
 
 .buttonstyy{
@@ -114,7 +133,7 @@ li {
 
 .vai{
   overflow: scroll;
-  width: 300px; 
+  width: 400px; 
   height: 300px;
 }
 
@@ -129,4 +148,24 @@ li {
   color: white;
   border: 0px;
   margin-top: 15px;
+}
+
+.table{
+  font-size: 18PX;
+  width: 100%;
+  text-align: left;
+  margin-top: 18PX;
+}
+
+.try{
+  display: none;
+}
+
+.filter{
+  width: 390px;
+  font-size: 16px;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
 }

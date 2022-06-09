@@ -11,11 +11,11 @@ class App extends React.Component {
     todo: [],
   }
 
-  addTodo(text) {
+  addTodo(text,category) {
     var list = this.state.todo
     text=text.trim()
     if (text.length > 0) {
-      list.push({ text: text, done: 0 })
+      list.push({ text: text, done: 0,category:category })
       this.setState({ todo: list })
     }
     this.state.text = ""
@@ -73,7 +73,7 @@ componentDidMount() {
           <div className="todoblock">
             <label className="header">Todo App</label>
 
-            <InputTodo inputtext={(text)=>{this.addTodo(text)}}/>
+            <InputTodo inputtext={(text,category)=>{this.addTodo(text,category)}}/>
             <DisplayList  list={this.state.todo}  selectdone={(index)=>{this.itemDone(index)}} itemdel={(index)=>{this.deleteItem(index)}}/>
             <EmptyTodo deletetodo={()=>{this.clearTodo()}} reset={()=>{this.reset()}} list={this.state.todo}/>
             
