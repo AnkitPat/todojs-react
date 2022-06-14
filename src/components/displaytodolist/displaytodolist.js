@@ -2,10 +2,13 @@ import React from 'react'
 import '../../App.css';
 import { FaTrashAlt } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
-
+import { doc, getDoc } from 'firebase/firestore';
+import db from '../../config';
+import { decryptEmail } from '../../utils';
 export class DisplayList extends React.Component{
   state={
-    search:""
+    search :"",
+    todo : []
   }
 
   filter(value){
@@ -13,27 +16,17 @@ export class DisplayList extends React.Component{
   }
 
     render(){
-        let items=this.props.list
+         let items= this.props.list
+        //let items = this.state.todo
         let search=this.state.search
-
         
-        
+       console.log("display : ", items)
 
         return(
-          //   <div className={items.length > 5 ? "vai" : " "}>
-          //   {items.map((item, index) => {
-          //     return <span key={index} className={items[index].done > 0 ? "todoitem done" : "todoitem"}>
-          //       <li className="itemsstyle" onClick={(event) => { this.props.selectdone(index) }}>{item.text}&nbsp;&nbsp;
-          //       &nbsp;{item.category}<button className="sty" onClick={(event) => {event.stopPropagation();  this.props.itemdel(index) }}><FaTrashAlt />
-          //         </button>
-          //       </li>
-          //     </span>;
-          //   })}
-          // </div>
-         
+
 
           <div>
-
+{/* className={list.category.includes(search) > 0 ? "itemsstyle":"itemsstyle try"} */}
           <input className='filter' placeholder="Search" onKeyUp={(event)=>{this.filter(event.target.value)}}></input>
 
           <div className={items.length > 5 ? "vai" : " "}>
@@ -43,12 +36,13 @@ export class DisplayList extends React.Component{
                 <th style={{width:"40%"}}>Category</th> 
                 <th style={{width:"10%"}}></th>
               </tr>
-              {items.map((item, index) => {
-               return <tr className={item.category.includes(search) > 0 ? "itemsstyle":"itemsstyle try"} >
-                <td  className={items[index].done > 0 ? "todoitem done" : "todoitem"}  onClick={(event) => { this.props.selectdone(index) }}>{item.text}</td>
-                <td>{item.category}</td>
+              {items.map((list, index) => {
+               return <tr  >
+                <td  className={items[index].done > 0 ? "todoitem done" : "todoitem"}  onClick={(event) => { this.props.selectdone(index) }}>{items[index].list.text}</td>
+                <td>{items[index].list.category}</td>
                 <td><button className="sty"  onClick={(event) => {event.stopPropagation();  this.props.itemdel(index) }}><FaTrashAlt /></button></td>
               </tr>
+              
             })}
 
             </table>

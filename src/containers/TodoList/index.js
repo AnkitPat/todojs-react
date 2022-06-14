@@ -1,23 +1,54 @@
 
-import './App.css';
+import './index.css';
 import React from 'react'
-import { InputTodo } from "./components/Inputtodo/Inputtodo"
-import { DisplayList } from "./components/displaytodolist/displaytodolist"
-import { EmptyTodo } from "./components/emptytodo/emptytodo"
+import { InputTodo } from "../../components/Inputtodo/Inputtodo"
+import { DisplayList } from "../../components/displaytodolist/displaytodolist"
+import { EmptyTodo } from "../../components/emptytodo/emptytodo"
 
 
 import { addDoc, arrayUnion, collection, doc, FieldValue, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore"
-import db from './config';
+import db from '../../config';
 import { async, getModularInstance } from '@firebase/util';
+import { Navigate, useMatch, useNavigate, useParams, useRoutes, useSearchParams } from 'react-router-dom';
+import { useLocation, withRouter } from "react-router"
+import { decryptEmail } from '../../utils';
 
-
-
-
-class App extends React.Component {
+class TodoList extends React.Component {
   state = {
     text: "",
     todo: [],
+    email:" "
   }
+
+   
+
+  componentDidMount() {
+    window.addEventListener('onbeforeunload', this.clearTodo())
+ //   this.getList()
+
+    const search = window.location.search
+    console.log(search)
+    const email = new URLSearchParams(search).get('email');
+    console.log(email)
+   // let email = decryptEmail(id)
+    console.log(email);
+    this.setState({email:email})
+
+
+    getDoc(doc(db, "registration",email)).then(docSnap => {
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data().list);
+        
+        let data=docSnap.data().list
+        console.log("todo : ",data)
+        this.setState({todo : data})
+        console.log("todo : ",this.state.todo)
+      } else {
+        console.log("No such document!");
+      }
+    })
+
+   }
 
   // const docRef = doc(db, "cities", "SF");
   // const docSnap = await getDoc(docRef);
@@ -35,7 +66,7 @@ class App extends React.Component {
     const docRef = doc(db, "TodoList", "todos")
     const docSnap = await getDoc(docRef);
     const todoList1 = docSnap.data()
-    console.log(todoList1,"--2")
+    console.log(todoList1, "--2")
     //this.setState({ todo: todoList.list }) 
 
 
@@ -43,7 +74,7 @@ class App extends React.Component {
     const todoCollection = collection(db, 'TodoList1');
     const todoDocs = await getDocs(todoCollection);
     const todoList2 = todoDocs.docs.map(doc => doc.data());
-    console.log(todoList2,"--1")
+    console.log(todoList2, "--1")
 
   }
 
@@ -57,14 +88,14 @@ class App extends React.Component {
 
     localStorage.setItem('Todo', JSON.stringify(list))
 
-    //way2
-    let todoReference = doc(db, "TodoList", "todos")
+    // //way2
+     let todoReference = doc(db, "registration",this.state.email)
+    let data={ text: text, done: 0, category: category }
 
     updateDoc(todoReference, {
       list: arrayUnion(
         {
-          text,
-          category,
+          list : {data},
         }
       )
     })
@@ -72,11 +103,11 @@ class App extends React.Component {
 
     //way1
 
-    const todoCollection = doc(db, "TodoList1", "12344321");
-     setDoc(todoCollection, {
-        text,
-        category
-    });
+    // const todoCollection = doc(db, "TodoList1", "12344321");
+    // setDoc(todoCollection, {
+    //   text,
+    //   category
+    // });
 
     // const todoCollection = collection(db, 'TodoList1');
     // addDoc(todoCollection,{
@@ -96,10 +127,7 @@ class App extends React.Component {
     //       )
     //   })
 
-
-
-
-
+    
     this.state.text = ""
   }
 
@@ -136,18 +164,9 @@ class App extends React.Component {
     this.setState({ todo: list })
   }
 
-  componentDidMount() {
-    window.addEventListener('onbeforeunload', this.clearTodo())
-    this.getList()
-  }
-
-
 
   render() {
     var items = this.state.todo
-
-    console.log(this.state)
-
     return (
 
 
@@ -156,9 +175,21 @@ class App extends React.Component {
           <div className="todoblock">
             <label className="header">Todo App</label>
 
-            <InputTodo inputtext={(text, category) => { this.addTodo(text, category) }} />
-            <DisplayList list={this.state.todo} selectdone={(index) => { this.itemDone(index) }} itemdel={(index) => { this.deleteItem(index) }} />
-            <EmptyTodo deletetodo={() => { this.clearTodo() }} reset={() => { this.reset() }} list={this.state.todo} />
+            <InputTodo 
+              inputtext={(text, category) => { this.addTodo(text, category) }} 
+            />
+
+            <DisplayList 
+              list={this.state.todo} 
+              selectdone={(index) => { this.itemDone(index) }} 
+              itemdel={(index) => { this.deleteItem(index) }} 
+            />
+
+            <EmptyTodo 
+              deletetodo={() => { this.clearTodo() }} 
+              reset={() => { this.reset() }} 
+              list={this.state.todo} 
+            />
 
           </div>
         </header>
@@ -167,4 +198,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default TodoList;
