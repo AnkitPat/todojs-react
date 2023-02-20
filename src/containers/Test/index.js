@@ -7,6 +7,9 @@ export default function Test() {
         fetch('/todos')
       .then(response => response.json())
       .then(json => console.log(json))
+
+      fetch('ankitpatidar030g.korconnect.io/Search-Api') .then(response => response.json())
+      .then(json => console.log(json))
     },[])
     return (
         <div>adfasf
