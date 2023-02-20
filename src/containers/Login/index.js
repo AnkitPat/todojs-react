@@ -7,6 +7,7 @@ import React from 'react';
 import { addDoc, arrayUnion, collection, doc, FieldValue, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore"
 import db from '../../config';
 import { async, getModularInstance } from '@firebase/util';
+import { useNavigate } from 'react-router';
 
 
 
@@ -37,6 +38,11 @@ class Login extends React.Component {
 
     if(databasePassword == this.state.password){
         console.log("correct")
+        this.props.navigate({
+          pathname: '/todolist',
+      //    search: `?email=${encryptEmail(this.state.email)}`
+          search: `?email=${this.state.email}`
+    });
     }
     else{
         console.log("Incorrect")
@@ -64,4 +70,9 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+function WithNavigate(props) {
+  let navigate = useNavigate();
+  return <Login {...props} navigate={navigate} />
+}
+
+export default WithNavigate

@@ -81,6 +81,9 @@ class Registration extends React.Component {
                   <option value="Trainee">Trainee</option>
                 </select>
                 <button className='registration_button' type="submit" onClick={() => { this.qwe() }}>Registration</button>
+                <button onClick={() => {
+                  console.log(encryptEmail('a@gm.com'));
+                }}>check1</button>
               </div>
             </div>
           </header>

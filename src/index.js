@@ -7,12 +7,14 @@ import Registration from './containers/Registration';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Switch, Route, Routes } from "react-router-dom";
 import TodoList from './containers/TodoList';
+import Test from './containers/Test';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
+      <Route path="/" element={<Test/>}/>
       <Route path="/login" element={<Login />} />
       <Route path="/registration" element={<Registration />} />
       <Route path="/todolist" element={<TodoList />} />

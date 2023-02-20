@@ -5,51 +5,54 @@ import { FaSearch } from "react-icons/fa";
 import { doc, getDoc } from 'firebase/firestore';
 import db from '../../config';
 import { decryptEmail } from '../../utils';
-export class DisplayList extends React.Component{
-  state={
-    search :"",
-    todo : []
+export class DisplayList extends React.Component {
+  state = {
+    search: "",
+    todo: []
   }
 
-  filter(value){
-    this.setState({search:value})
+  filter(value) {
+    this.setState({ search: value })
   }
 
-    render(){
-         let items= this.props.list
-        //let items = this.state.todo
-        let search=this.state.search
-        
-       console.log("display : ", items)
+  render() {
+    let items = this.props.list
+    //let items = this.state.todo
+    let search = this.state.search
 
-        return(
+    console.log("display : ", items)
+
+    return (
 
 
-          <div>
-{/* className={list.category.includes(search) > 0 ? "itemsstyle":"itemsstyle try"} */}
-          <input className='filter' placeholder="Search" onKeyUp={(event)=>{this.filter(event.target.value)}}></input>
+      <div>
+        {/* className={list.category.includes(search) > 0 ? "itemsstyle":"itemsstyle try"} */}
+        <input className='filter' placeholder="Search" onKeyUp={(event) => { this.filter(event.target.value) }}></input>
 
-          <div className={items.length > 5 ? "vai" : " "}>
-            <table className='table'>
+        <div className={items.length > 5 ? "vai" : " "}>
+          <table className='table'>
+            <thead>
               <tr>
-                <th style={{width:"50%"}}>Todo</th>
-                <th style={{width:"40%"}}>Category</th> 
-                <th style={{width:"10%"}}></th>
+                <th style={{ width: "50%" }}>Todo</th>
+                <th style={{ width: "40%" }}>Category</th>
+                <th style={{ width: "10%" }}></th>
               </tr>
-              {items.map((list, index) => {
-               return <tr  >
-                <td  className={items[index].done > 0 ? "todoitem done" : "todoitem"}  onClick={(event) => { this.props.selectdone(index) }}>{items[index].list.text}</td>
-                <td>{items[index].list.category}</td>
-                <td><button className="sty"  onClick={(event) => {event.stopPropagation();  this.props.itemdel(index) }}><FaTrashAlt /></button></td>
-              </tr>
-              
-            })}
+            </thead>
+            <tbody>
+              {items.map((item, index) => {
+                return <tr key={index}>
+                  <td className={item.done > 0 ? "todoitem done" : "todoitem"} onClick={(event) => { this.props.selectdone(index) }}>{item.text}</td>
+                  <td>{item.category}</td>
+                  <td><button className="sty" onClick={(event) => { event.stopPropagation(); this.props.itemdel(index) }}><FaTrashAlt /></button></td>
+                </tr>
 
-            </table>
-          </div>
-    
-          </div>
-          
-            );
-    }
+              })}
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    );
+  }
 }

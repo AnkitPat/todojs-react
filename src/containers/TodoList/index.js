@@ -84,6 +84,7 @@ class TodoList extends React.Component {
     if (text.length > 0) {
       list.push({ text: text, done: 0, category: category })
       this.setState({ todo: list })
+
     }
 
     localStorage.setItem('Todo', JSON.stringify(list))
@@ -95,7 +96,7 @@ class TodoList extends React.Component {
     updateDoc(todoReference, {
       list: arrayUnion(
         {
-          list : {data},
+          ...data,
         }
       )
     })
